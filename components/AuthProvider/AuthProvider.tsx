@@ -9,30 +9,32 @@ interface AuthProviderProps {
     children: React.ReactNode;
 }
 
-export  default  function AuthProvider({ children }: AuthProviderProps) {
+export default function AuthProvider({children}: AuthProviderProps) {
     const setUser = useAuthStore((state) => state.setUser);
     const clearIsAuthenticated = useAuthStore((state) => state.clearIsAuthenticated);
 
     useEffect(() => {
-        try {
             const fetchUser = async () => {
-                const isAuthenticated = await checkSession();
-                if (isAuthenticated) {
-                    const user = await getMe();
+                try {
+                    const isAuthenticated = await checkSession();
 
-                    if (user) {
-                        setUser(user);
-                    } else {
-                        clearIsAuthenticated();
+                    if (isAuthenticated) {
+                        const user = await getMe();
+
+                        if (user) {
+                            setUser(user);
+                        } else {
+                            clearIsAuthenticated();
+                        }
                     }
+                } catch {
+                    clearIsAuthenticated();
                 }
-            }
-            fetchUser();
-        } catch {
-            clearIsAuthenticated();
-        }
+            };
 
-    }, [setUser, clearIsAuthenticated]);
+            fetchUser();
+        }, [setUser, clearIsAuthenticated]
+    );
 
     return <>{children}</>;
 };

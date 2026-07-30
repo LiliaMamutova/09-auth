@@ -2,6 +2,7 @@ import {nextServer} from "@/lib/api/api";
 import {FetchNotesProps, NoteServiceResponse} from "@/lib/api/clientApi";
 import type {Note} from "@/types/note";
 import {cookies} from "next/headers";
+import {User} from "@/types/user";
 
 const PER_PAGE = 10;
 

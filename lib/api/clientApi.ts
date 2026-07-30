@@ -1,6 +1,7 @@
 import { nextServer } from "./api"
 import type {NoteFormData, Note} from "@/types/note";
 import type {AxiosError} from "axios";
+import {User} from "@/types/user";
 
 const PER_PAGE = 10;
 

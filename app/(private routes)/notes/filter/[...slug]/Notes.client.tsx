@@ -6,12 +6,13 @@ import {useEffect, useState} from "react";
 
 import css from "./page.module.css"
 import SearchBox from "@/components/SearchBox/SearchBox";
-import useFetchNotes from "@/queries/notes";
 import Pagination from "@/components/Pagination/Pagination";
 import NoteList from "@/components/NoteList/NoteList";
 import ErrorMessage from "@/components/ErrorMessage/ErrorMessage";
 import Loader from "@/components/Loader/Loader";
 import Link from "next/link";
+import {keepPreviousData, useQuery} from "@tanstack/react-query";
+import {fetchNotes, NoteServiceResponse} from "@/lib/api/clientApi";
 
 
 interface NotesClientProps {
@@ -28,12 +29,12 @@ export default function NotesClient({ tag }: NotesClientProps) {
         isError,
         isSuccess,
         isLoading,
-    } =
-        useFetchNotes(
-            search,
-            page,
-            tag,
-        );
+    } = useQuery<NoteServiceResponse>({
+            queryKey: ["notes", tag, search, page],
+            queryFn: () => fetchNotes({search, page, tag}),
+            placeholderData: keepPreviousData,
+            refetchOnMount: false,
+        })
 
     const notes = data?.notes ?? [];
     const totalPages = data?.totalPages ?? 0;

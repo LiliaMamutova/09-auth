@@ -12,7 +12,7 @@ export default function EditProfilePage() {
     const router = useRouter();
     const user = useAuthStore((state) => state.user);
     const setUser = useAuthStore((state) => state.setUser);
-    const [ editUserName, setEditUserName ] = useState<string | null>(null);
+    const [editUserName, setEditUserName] = useState<string | null>(null);
     const username = editUserName ?? user?.username ?? ""
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -21,7 +21,7 @@ export default function EditProfilePage() {
 
     const handleSaveUser = async (event: React.SyntheticEvent<HTMLFormElement>) => {
         event.preventDefault();
-        const updateUserName = await updateMe({ username });
+        const updateUserName = await updateMe({username});
         setUser(updateUserName);
         router.push("/profile");
     }
@@ -30,22 +30,22 @@ export default function EditProfilePage() {
         router.push("/profile");
     }
 
-    if(!user) {
+    if (!user) {
         return null;
     }
 
-    return(
+    return (
         <>
             <main className={css.mainContent}>
                 <div className={css.profileCard}>
                     <h1 className={css.formTitle}>Edit Profile</h1>
 
                     <Image
-                         src={user.avatar}
-                         alt="User Avatar"
-                         width={120}
-                         height={120}
-                         className={css.avatar}
+                        src={user.avatar}
+                        alt="User Avatar"
+                        width={120}
+                        height={120}
+                        className={css.avatar}
                     />
 
                     <form

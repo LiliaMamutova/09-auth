@@ -25,7 +25,7 @@ export default function NoteForm() {
             router.push("/notes/filter/all")
         },
         onError: () => {
-            toast.error("Field to create note");
+            toast.error("Failed to create note");
         }
     });
 
