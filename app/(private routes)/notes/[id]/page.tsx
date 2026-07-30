@@ -1,9 +1,9 @@
 // app/notes/[id]/page.tsx
 
 import {dehydrate, QueryClient} from "@tanstack/query-core";
-import {fetchNoteById} from "@/lib/api";
+import {fetchNoteById} from "@/lib/api/serverApi";
 import {HydrationBoundary} from "@tanstack/react-query";
-import NoteDetailsClient from "@/app/notes/[id]/NoteDetails.client";
+import NoteDetailsClient from "@/app/(private routes)/notes/[id]/NoteDetails.client";
 import {Metadata} from "next";
 
 interface NoteDetailsProps {

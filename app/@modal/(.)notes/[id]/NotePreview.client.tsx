@@ -1,7 +1,7 @@
 "use client";
 
 import Modal from "@/components/Modal/Modal";
-import {fetchNoteById} from "@/lib/api";
+import {fetchNoteById} from "@/lib/api/clientApi";
 import Loading from "@/app/loading";
 import css from "./NotePreview.module.css"
 

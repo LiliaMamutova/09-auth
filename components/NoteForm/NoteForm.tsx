@@ -3,7 +3,7 @@
 import css from "./NoteForm.module.css"
 
 import {useMutation, useQueryClient} from "@tanstack/react-query";
-import {createNote} from "@/lib/api";
+import {createNote} from "@/lib/api/clientApi";
 import toast from "react-hot-toast";
 import React, {useId} from "react";
 import {useRouter} from "next/navigation";
@@ -42,13 +42,12 @@ export default function NoteForm() {
     }
 
     const handleSubmit = async (formData: FormData) => {
-        console.log(formData);
-        const values = {
+        const values  = {
             title: String(formData.get("title") ?? ""),
             content: String(formData.get("content") ?? ""),
             tag: String(formData.get("tag") ?? "Todo"),
         }
-        console.log(values.title, values.content, values.tag)
+        // console.log(values.title, values.content, values.tag)
 
         await mutation.mutateAsync(values);
     }

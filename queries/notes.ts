@@ -1,4 +1,4 @@
-import {fetchNotes, type NoteServiceResponse} from "@/lib/api";
+import {fetchNotes, type NoteServiceResponse} from "@/lib/api/clientApi";
 import {keepPreviousData, useQuery} from "@tanstack/react-query";
 
 
